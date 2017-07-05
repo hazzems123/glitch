@@ -1,0 +1,22 @@
+{
+  "name": "node-server-example",
+  "version": "1.0.0",
+  "description": "What am I about?",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+  },
+  "engines": {
+    "node": "8.1.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/node-server-example"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "server"
+  ]
+}
