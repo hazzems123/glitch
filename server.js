@@ -4,16 +4,17 @@ http.createServer(handleRequest).listen(3000)
 
 function handleRequest (request, response) {
   
-  // read out the request body if present
-  let payload = ''
-  if (request.method == 'POST') request.on('data', (data) => payload += data );
-  
-  // log request method & URL as well as the body if present
+  // log request method & URL
   console.log(`${request.method} ${request.url}`)
-  request.on('end', function () {
-    if (payload) console.log(payload)
-    
-    // return a response
+  
+  // for GET (and other non-POST) requests show "ok" and stop here
+  if (request.method !== 'POST') return response.end('ok')
+  
+  // for POST requests, read out the request body, log it, then show "ok" as response
+  let payload = ''
+  request.on('data', (data) => payload += data );
+  request.on('end', () => {
+    console.log(payload)
     response.end('ok')
   })
 }
