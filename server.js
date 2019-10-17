@@ -26,4 +26,4 @@ http.createServer(function (req, res) {
   redirectedfunc(req,res)
 
 
-}).listen(3200)
+}).listen(3000)
