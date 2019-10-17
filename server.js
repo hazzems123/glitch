@@ -5,7 +5,8 @@ var path = require('path');
 http.createServer(function (req, res) {
             console.log('request ', req.url);
             const {headers, url, method } = req;
-  
+            console.log ('this is the method used:'+ method)
+            console.log ('this is the path:'+ Object.keys(path))
         
   
   req.on('error', ()=>{
@@ -26,4 +27,4 @@ http.createServer(function (req, res) {
   redirectedfunc(req,res)
 
 
-}).listen(3000)
+}).listen(8080)
