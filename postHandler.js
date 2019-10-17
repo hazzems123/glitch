@@ -1,12 +1,12 @@
 
 let posthandler = (req,res,cb)=>{
 if (req.method === 'POST') {
-    let body = [];
+    let body
     req.on('data', (chunk) => {
+      chunk = JSON.parse(chunk)
       console.log ('the received chunk :'+chunk)
-      body.push(chunk);
+      body = JSON.stringify(chunk)
     }).on('end', () => {
-      body = Buffer.concat(body).toString();
       cb(body)
     });
   } else {
