@@ -13,57 +13,24 @@ http.createServer(function (request, response) {
                                 body.push(chunk);
                               }).on('end', () => {
                                           body = Buffer.concat(body).toString();
-                                          // BEGINNING OF NEW STUFF
+          // BEGINNING OF NEW STUFF
           })
-                                       response.on('error', (err) => {
-                                      console.error(err);
-                                      });
+            response.on('error', (err) => {
+                  console.error(err)
+               response.statusCode = 200;
+    response.setHeader('Content-Type', 'application/json');
+    // Note: the 2 lines above could be replaced with this next one:
+    // response.writeHead(200, {'Content-Type': 'application/json'})
 
+    const responseBody = { headers, method, url, body };
 
-            var filePath = '.' + request.url;
-            if (filePath == './') {
-                            filePath = './index.html';
-                        }
+    response.write('hello world');
+    response.send ('helllo world');
+    response.end();
 
-            var extname = String(path.extname(filePath)).toLowerCase();
-            var mimeTypes = {
-               
-            '.html': 'text/html',
-                            '.js': 'text/javascript',
-                            '.css': 'text/css',
-                            '.json': 'application/json',
-                            '.png': 'image/png',
-                            '.jpg': 'image/jpg',
-                            '.gif': 'image/gif',
-                            '.svg': 'image/svg+xml',
-                            '.wav': 'audio/wav',
-                            '.mp4': 'video/mp4',
-                            '.woff': 'application/font-woff',
-                            '.ttf': 'application/font-ttf',
-                            '.eot': 'application/vnd.ms-fontobject',
-                            '.otf': 'application/font-otf',
-                            '.wasm': 'application/wasm'
-                        };
+              
+                                      })
 
-            var contentType = mimeTypes[extname] || 'application/octet-stream';
-
-            fs.readFile(filePath, function(error, content) {
-              if (error) {
-                if(error.code == 'ENOENT') {
-                    fs.readFile('./404.html', function(error, content) {
-                     response.writeHead(404, { 'Content-Type': contentType });
-                     response.end(content, 'utf-8');
-                     })
-                     }
- else {
-                     response.writeHead(500);
-                     response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
-                      }
-                      }
-             else {
-                 response.writeHead(200, { 'Content-Type': contentType });
-                 response.end(content, 'utf-8');
-                                            }
-                        })
+        
 
 }).listen(8125)
