@@ -1,16 +1,17 @@
 
-let posthandler = (req,res,cb){
+let posthandler = (req,res,cb)=>{
 if (req.method === 'POST') {
     let body = [];
-    request.on('data', (chunk) => {
+    req.on('data', (chunk) => {
       body.push(chunk);
     }).on('end', () => {
       body = Buffer.concat(body).toString();
-      response.end(body);
+      res.end(body);
     });
   } else {
-    response.statusCode = 404;
-    response.end();
+    res.statusCode = 404;
+    res.end();
   }
   
-  
+}
+module.exports = posthandler
