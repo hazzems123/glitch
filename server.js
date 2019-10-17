@@ -25,7 +25,6 @@ http.createServer(function (request, response) {
     const responseBody = { headers, method, url, body };
 
     response.write('hello world');
-    response.send ('helllo world');
     response.end();
 
               
