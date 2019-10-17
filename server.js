@@ -26,9 +26,9 @@ http.createServer(function (req, res) {
   let redirectedfunc = router[method]   
   // run the function that will handle the received method
   redirectedfunc(req,res,(data)=>{
-    i
+    if (data!=null || data!= 200){
     res.writeHead(200);
-     res.end(data)
+     res.end(data)}
     
   })
 
