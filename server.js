@@ -13,18 +13,18 @@ http.createServer(function (req, res) {
     res.end('their is an error processing the request ')
   })
   
-  let gethandler = (req,res) => {
-  
-  res.writeHead(200);
-  res.end('ok')
-};
+ 
   
   let router = {
           "GET" : gethandler
   }
         
   let redirectedfunc = router[method]   
-  redirectedfunc(req,res)
+  redirectedfunc(req,res,(data)=>{
+    res.writeHead(200);
+     res.end(data)
+    
+  })
 
 
 }).listen(8080)
