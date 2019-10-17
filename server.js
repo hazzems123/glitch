@@ -7,13 +7,15 @@ http.createServer(function (req, res) {
             const {headers, url, method } = req;
   
         
-        
-  let gethandler = (req,res) => {
-  req ('error', ()=>{
+  
+  req.on('error', ()=>{
     res.end('their is an error processing the request ')
   })
+  
+  let gethandler = (req,res) => {
+  
   res.writeHead(200);
-res.end('ok')
+  res.end('ok')
 };
   
   let router = {
@@ -24,4 +26,4 @@ res.end('ok')
   redirectedfunc(req,res)
 
 
-}).listen(3000)
+}).listen(3200)
