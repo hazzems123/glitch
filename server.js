@@ -1,8 +1,11 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-var gethandler = require('./getHandler')
-var posthandler = require('./postHandler')
+var gethandler = require('./getHandler');
+var posthandler = require('./postHandler');
+var MongoClient = require('mangodb');
+
+
 
 http.createServer(function (req, res) {
             console.log('request ', req.url);
@@ -15,7 +18,11 @@ http.createServer(function (req, res) {
     res.end('their is an error processing the request ')
   })
   
- 
+ const db = MongoClient.connect("mongodb+srv://hazem_34:<iloverony123!>@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority");
+console.log ('this is the db :'+ db)
+
+const Posts = db.collection('posts');
+const Comments =  db.collection('comments')
   // we handle the method we received against that will handle it
   
   let router = {
