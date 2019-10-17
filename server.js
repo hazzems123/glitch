@@ -2,33 +2,24 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
-http.createServer(function (request, response) {
-            console.log('request ', request.url);
-            const {headers, url, method } = request;
-         //reading the body request from the server
-        let body = [];
-          request.on('error', (err) => {
-                      console.error(err);
-                    }).on('data', (chunk) => {
-                                body.push(chunk);
-                              }).on('end', () => {
-                                          body = Buffer.concat(body).toString();
-          // BEGINNING OF NEW STUFF
-          })
-            response.on('error', (err) => {
-                  console.error(err)
-               response.statusCode = 200;
-    response.setHeader('Content-Type', 'application/json');
-    // Note: the 2 lines above could be replaced with this next one:
-    // response.writeHead(200, {'Content-Type': 'application/json'})
-
-    const responseBody = { headers, method, url, body };
-
-    response.write('hello world');
-    response.end();
-
-              
-                                      })
+http.createServer(function (req, res) {
+            console.log('request ', req.url);
+            const {headers, url, method } = req;
+  
+        
+        
+  let gethandler = (req,res) => {
+  res.writeHead(200);
+res.write('GET parameters: ' );
+res.end()
+};
+  
+  let router = {
+          "GET" : gethandler
+  }
+        
+  let redirectedfunc = router[method]   
+  redirectedfunc(req,res)
 
         
 
