@@ -2,4 +2,4 @@
   let data = ' the call back works'
  cb (data)
 };
-mod
+module.exports = gethandler

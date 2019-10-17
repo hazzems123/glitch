@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+var gethandler = require('./getHandler')
 
 http.createServer(function (req, res) {
             console.log('request ', req.url);
@@ -14,12 +15,14 @@ http.createServer(function (req, res) {
   })
   
  
+  // we handle the method we received against that will handle it
   
   let router = {
           "GET" : gethandler
   }
-        
+// store the function that will handle the received method  
   let redirectedfunc = router[method]   
+  // run the function that will handle the received method
   redirectedfunc(req,res,(data)=>{
     res.writeHead(200);
      res.end(data)
