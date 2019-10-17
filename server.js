@@ -9,9 +9,11 @@ http.createServer(function (req, res) {
         
         
   let gethandler = (req,res) => {
+  req ('error', ()=>{
+    res.end('their is an error processing the request ')
+  })
   res.writeHead(200);
-res.write('GET parameters: ' );
-res.end()
+res.end('ok')
 };
   
   let router = {
@@ -21,6 +23,5 @@ res.end()
   let redirectedfunc = router[method]   
   redirectedfunc(req,res)
 
-        
 
-}).listen(8125)
+}).listen(3000)
