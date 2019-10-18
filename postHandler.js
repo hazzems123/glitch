@@ -5,13 +5,16 @@ if (req.method === 'POST') {
     req.on('data', async (chunk) => {
       chunk = await JSON.parse(chunk);
       console.log ('the received chunk :'+chunk.size)
+      
+
       const mongourl = "mongodb+srv://hazzems:iloverony123!@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority"
         const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true }, (err,client)=> {
           if (!err){
+           var orderno = Math.floor(100000 + Math.random() * 900000);
             const db = client.db('waistnshape')
         //create an order number for the customer 
-        var orderno =  Math.floor(100000 + Math.random() * 900000);
         db.collection('orders').insertOne({
+        orderno : orderno,
         name : chunk.name,
         email : chunk.email,
         mobile : chunk.mobile,
