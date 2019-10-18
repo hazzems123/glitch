@@ -11,6 +11,11 @@ if (req.method === 'POST') {
             const db = client.db('waistnshape')
                                 
             db.collection('orders').insertOne({
+        name : chunk.name,
+        email : chunk.email,
+        mobile : chunk.mobile,
+        address : chunk.address,
+      
         size: chunk.size,
         qty: chunk.qty
     });
