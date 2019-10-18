@@ -16,10 +16,15 @@ http.createServer( async (req, res) => {
   req.on('error', ()=>{
     res.end('their is an error processing the request ')
   })
-  
- const db = await MongoClient.connect("mongodb+srv://hazzems:iloverony123!@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority", (err,client)=> {
+  const mongourl = "mongodb+srv://hazzems:iloverony123!@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority"
+ const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true }, (err,client)=> {
  
 console.log ('this is the :'+ Object.keys(client));
+  var db = client.db('customers');
+   db.createCollection("customers", (err, res) => {
+if (err) throw err;
+console.log("Collection created!");
+});
 
  })
   
