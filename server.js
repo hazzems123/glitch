@@ -7,7 +7,7 @@ var MongoClient = require('mongodb');
 
 
 
-http.createServer(function (req, res) {
+http.createServer( async (req, res) => {
             console.log('request ', req.url);
             const {headers, url, method } = req;
             console.log ('this is the method used:'+ method)
@@ -18,11 +18,15 @@ http.createServer(function (req, res) {
     res.end('their is an error processing the request ')
   })
   
- const db = MongoClient.connect("mongodb+srv://hazem_34:<iloverony123!>@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority");
-console.log ('this is the db :'+ db)
+ const db = await MongoClient.connect("mongodb+srv://hazem_34:<iloverony123!>@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority");
+    console.log ('this is the db :'+ db)
 
 const Posts = db.collection('posts');
 const Comments =  db.collection('comments')
+
+  
+  
+
   // we handle the method we received against that will handle it
   
   let router = {
