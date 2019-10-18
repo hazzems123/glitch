@@ -18,7 +18,7 @@ http.createServer( async (req, res) => {
     res.end('their is an error processing the request ')
   })
   
- const db = await MongoClient.connect("mongodb+srv://hazem_34:<iloverony123!>@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority");
+ const db = await MongoClient.connect("mongodb+srv://hazzems:<iloverony123!>@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority");
     console.log ('this is the db :'+ db)
 
 const Posts = db.collection('posts');
