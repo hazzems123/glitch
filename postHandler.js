@@ -10,7 +10,7 @@ if (req.method === 'POST') {
           if (!err){
             const db = client.db('waistnshape')
                                 
-            db.collection('orders').insertOne({
+            db.collection('orders').insertOne({{order:chunk.orderno}:{
         name : chunk.name,
         email : chunk.email,
         mobile : chunk.mobile,
@@ -18,7 +18,7 @@ if (req.method === 'POST') {
       
         size: chunk.size,
         qty: chunk.qty
-    });
+    }});
           }
           else {
             console.log ('error connecting to the db')
