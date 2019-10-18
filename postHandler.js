@@ -8,10 +8,8 @@ if (req.method === 'POST') {
       console.log ('the received chunk :'+chunk)
       const mongourl = "mongodb+srv://hazzems:iloverony123!@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority"
         const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true }, (err,client,chunk)=> {
-         client.collection('orders').insertOne({
-         size: chunk.size,
-        qty: chunk.qty
-    });
+          console.log ("this is the client :"+ Object.keys(client)
+       
  })
       body = JSON.stringify(chunk)
     }).on('end', () => {
