@@ -3,7 +3,7 @@ let posthandler = (req,res,cb)=>{
 if (req.method === 'POST') {
     let body
     req.on('data', async (chunk) => {
-      chunk = await JSON.parse(chunk);
+      chunk = JSON.parse(chunk);
       console.log ('the received chunk :'+chunk.size)
       
 
