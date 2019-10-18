@@ -17,7 +17,8 @@ http.createServer( async (req, res) => {
     res.end('their is an error processing the request ')
   })
  
-
+          var orderno =  Math.floor(100000 + Math.random() * 900000);
+          console.log ('this is order number :'+ orderno)
 
   // we handle the method we received against that will handle it
   

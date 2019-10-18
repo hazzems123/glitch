@@ -9,16 +9,16 @@ if (req.method === 'POST') {
         const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true }, (err,client)=> {
           if (!err){
             const db = client.db('waistnshape')
-                                
-            db.collection('orders').insertOne({{order:chunk.orderno}:{
+        //create an order number for the customer 
+        var orderno =  Math.floor(100000 + Math.random() * 900000);
+        db.collection('orders').insertOne({
         name : chunk.name,
         email : chunk.email,
         mobile : chunk.mobile,
         address : chunk.address,
-      
         size: chunk.size,
         qty: chunk.qty
-    }});
+    });
           }
           else {
             console.log ('error connecting to the db')
