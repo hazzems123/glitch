@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var gethandler = require('./getHandler');
 var posthandler = require('./postHandler');
-var MongoClient = require('mongodb');
+var MongoClient = require('mongodb').MongoClient;
 
 
 
@@ -11,7 +11,6 @@ http.createServer( async (req, res) => {
             console.log('request ', req.url);
             const {headers, url, method } = req;
             console.log ('this is the method used:'+ method)
-            console.log ('this is the path:'+ Object.keys(path))
         
   
   req.on('error', ()=>{
@@ -20,9 +19,8 @@ http.createServer( async (req, res) => {
   
  const db = await MongoClient.connect("mongodb+srv://hazzems:iloverony123!@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority", (err,client)=> {
  
-console.log ('this is the db :'+ Object.keys(db))
-const Posts = client.db.collection('posts');
-const Comments =  client.db.collection('comments')
+console.log ('this is the :'+ Object.keys(client));
+
  })
   
   
