@@ -8,22 +8,24 @@ if (req.method === 'POST') {
       
       var orderno = Math.floor(100000 + Math.random() * 900000);
       const mongourl = "mongodb+srv://hazzems:iloverony123!@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority"
-        const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true }, (err,client)=> {
+        const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true }, async (err,client)=> {
           if (!err){
             const db = client.db('waistnshape')
         //create an order number for the customer 
-     for (var i = 0 ; i <= chunk.lenght;i++){
-       console.log (chunk[i].name)
-        db.collection('orders').insertOne({
+        chunk.forEach (z=>{
+           db.collection('orders').insertOne({
         orderno : orderno,
-        name : chunk[i].name,
-        email : chunk[i].email,
-        mobile : chunk[i].mobile,
-        address : chunk[i].address,
-        size: chunk[i].size,
-        qty: chunk[i].qty
+        name : z.name,
+        email : z.email,
+        mobile : z.mobile,
+        address : z.address,
+        size: z.size,
+        qty: z.qty
     });
-        }
+        
+        })
+       
+        
           }
           else {
             console.log ('error connecting to the db')
