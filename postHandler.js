@@ -3,7 +3,7 @@ let posthandler = (req,res,cb)=>{
 if (req.method === 'POST') {
     let body
     req.on('data', async (chunk) => {
-      chunk = JSON.parse(chunk);
+      chunk = JSON.parse(chunk)
       console.log ('the received chunk :'+chunk[0].size)
       
       var orderno = Math.floor(100000 + Math.random() * 900000);
@@ -12,7 +12,8 @@ if (req.method === 'POST') {
           if (!err){
             const db = client.db('waistnshape')
         //create an order number for the customer 
-        for (var i = 0 ; i < chunk.lenght;i++){
+     for (var i = 0 ; i <= chunk.lenght;i++){
+       console.log (chunk[i].name)
         db.collection('orders').insertOne({
         orderno : orderno,
         name : chunk[i].name,
