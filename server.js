@@ -12,12 +12,12 @@ http.createServer( async (req, res) => {
             const {headers, url, method } = req;
             console.log ('this is the method used:'+ method)
   const mongourl = "mongodb+srv://hazzems:iloverony123!@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority"
-  
+
   const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true })
+  
+  console.log (db.db('waistnshape'))
    
-    const instadb = db('waistnshape')
-    
-    console.log (instadb)
+  
   
   req.on('error', ()=>{
     res.end('their is an error processing the request ')
