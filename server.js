@@ -13,7 +13,7 @@ http.createServer( async (req, res) => {
             console.log ('this is the method used:'+ method)
   const mongourl = "mongodb+srv://hazzems:iloverony123!@cluster0-atcd6.mongodb.net/test?retryWrites=true&w=majority"
 
-  const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true })
+  const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true },async (err,client)=> {
   
   console.log (db.db('waistnshape'))
    
@@ -33,12 +33,12 @@ http.createServer( async (req, res) => {
 // store the function that will handle the received method  
   let redirectedfunc = router[method]   
   // run the function that will handle the received method
-  redirectedfunc(req,res,(data)=>{
+  redirectedfunc(req,res,err,client,(data)=>{
     if (data!=null || data!= 200){
     res.writeHead(200);
      res.end(data)}
     
   })
-
+})
 
 }).listen(8080)
