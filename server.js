@@ -15,10 +15,7 @@ http.createServer( async (req, res) => {
 
   const db = await MongoClient.connect(mongourl,{ useNewUrlParser: true, useUnifiedTopology: true },async (err,client)=> {
   
-  console.log (db.db('waistnshape'))
    
-  
-  
   req.on('error', ()=>{
     res.end('their is an error processing the request ')
   })

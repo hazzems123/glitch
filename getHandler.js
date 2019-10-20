@@ -1,5 +1,13 @@
- let gethandler = (req,res ,cb) => {
+ let gethandler = (req,res ,err,client,cb) => {
   let data = ' the call back works'
- cb (data)
+  const db = client.db('waistnshape')
+const collection = db.collection('orders')
+
+collection.find().toArray((err, data) => {
+  data = JSON.stringify(data);
+  cb (data)
+})
+  
+
 };
 module.exports = gethandler
