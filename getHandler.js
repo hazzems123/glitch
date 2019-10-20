@@ -5,6 +5,7 @@ const collection = db.collection('orders')
 
 collection.find().toArray((err, data) => {
   data = JSON.stringify(data);
+  console.log ()
   cb (data)
 })
   
