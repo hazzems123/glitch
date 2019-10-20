@@ -32,6 +32,8 @@ http.createServer( async (req, res) => {
   // run the function that will handle the received method
   redirectedfunc(req,res,err,client,(data)=>{
     if (data!=null || data!= 200){
+      
+      
     res.writeHead(200);
      res.end(data)}
     
